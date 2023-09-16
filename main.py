@@ -1,6 +1,4 @@
 from npc import Npc
-from races.dwarf import Dwarf
-mariusz = Npc()
-mariusz.race = Dwarf
 
-mariusz.race.describe_race(mariusz.race)
+mariusz = Npc()
+mariusz.print_npc_info()
