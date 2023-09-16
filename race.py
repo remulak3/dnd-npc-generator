@@ -1,13 +1,15 @@
 
+
 class Race:
-    name = "Human"
-    size = "Medium"
-    speed = 30
-    darkvision = 0
-    languages = ["common"]
-    ability_score_improvement_by_1 = []
-    ability_score_improvement_by_2 = []
-    abilities = {}
+    def __init__(self) -> None:
+        self.name = ""
+        self.size = ""
+        self.speed = 0
+        self.darkvision = 0
+        self.languages = ["common"]
+        self.ability_score_improvement_by_1 = {}
+        self.ability_score_improvement_by_2 = {}
+        self.abilities = {}
 
     def describe_race(self):
         print("Race: ",self.name)
