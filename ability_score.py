@@ -22,8 +22,9 @@ class AbilityScores():
         self.scores["wisdom"] = array_values[3]
         self.scores["dexterity"] = array_values[4]
         self.scores["constitution"] = array_values[5]
-    
-    def calculate_ability_bonus(self, value) -> str:
+        
+    @staticmethod
+    def calculate_ability_bonus(value) -> str:
         if value == 1:
             return "-5"
         if value in range(2,4):
@@ -59,4 +60,4 @@ class AbilityScores():
 
     def print_ability_scores_bonuses(self):
         for name, value in self.scores.items():
-            print(name,":",value,"(",self.calculate_ability_bonus(value),")")
+            print(name,":",value,"(",AbilityScores.calculate_ability_bonus(value),")")
