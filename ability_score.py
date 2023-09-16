@@ -61,3 +61,7 @@ class AbilityScores():
     def print_ability_scores_bonuses(self):
         for name, value in self.scores.items():
             print(name,":",value,"(",AbilityScores.calculate_ability_bonus(value),")")
+
+    def pick_random_ability_score(self):
+        ability_scores = self.scores.keys()
+        return random.choice(ability_scores)
