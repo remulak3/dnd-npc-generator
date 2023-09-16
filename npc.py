@@ -3,7 +3,7 @@ from ability_score import AbilityScores
 from race import Race
 from races.dwarf import Dwarf
 from races.human import Human
-
+from races.elf import Elf
 class Npc:
     ability_scores = AbilityScores()
     race = Race()
@@ -14,7 +14,8 @@ class Npc:
     def generate_race(self):
         available_races = [
             Dwarf,
-            Human
+            Human,
+            Elf
         ]
         print(random.choice(available_races).name)
         self.race = random.choice(available_races)
