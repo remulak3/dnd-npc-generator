@@ -15,3 +15,13 @@ def test_generate_ability_scores_has_table_values():
     assert 12,13 in test_scores.scores.values()
     assert 15 in test_scores.scores.values()
     
+def test_pick_random_ability_score():
+    random_ability_score = AbilityScores().pick_random_ability_score()
+    assert random_ability_score in [
+            "strength",
+            "intelligence",
+            "charisma",
+            "wisdom",
+            "dexterity",
+            "constitution",
+        ]

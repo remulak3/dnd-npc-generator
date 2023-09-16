@@ -1,5 +1,3 @@
-
-
 class Race:
     def __init__(self) -> None:
         self.name = ""
@@ -12,15 +10,15 @@ class Race:
         self.abilities = {}
 
     def describe_race(self):
-        print("Race: ",self.name)
-        print("Size: ",self.size)
-        print("Speed: ",self.speed,"ft")
+        print("Race: ", self.name)
+        print("Size: ", self.size)
+        print("Speed: ", self.speed, "ft")
         if self.darkvision > 0:
-            print("Darkvision: ",self.darkvision,"ft")
+            print("Darkvision: ", self.darkvision, "ft")
         print("Languages:")
         for language in self.languages:
             print("-", language)
         if len(self.abilities) > 0:
             print("Abilities:")
             for name, description in self.abilities.items():
-                print(" - ",name,":", description)
+                print(" - ", name, ":", description)
