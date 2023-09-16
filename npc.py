@@ -8,6 +8,7 @@ from races.dragonborn import Dragonborn
 from races.gnome import Gnome
 from races.halfelf import HalfElf
 from races.halforc import HalfOrc
+from races.tiefling import Tiefling
 
 
 class Npc:
@@ -19,7 +20,7 @@ class Npc:
         self.apply_race_asi()
 
     def generate_race(self):
-        available_races = [Dwarf, Human, Elf, Halfling, Dragonborn, Gnome, HalfElf, HalfOrc]
+        available_races = [Dwarf, Human, Elf, Halfling, Dragonborn, Gnome, HalfElf, HalfOrc, Tiefling]
         self.race = random.choice(available_races)
 
     def print_statblock(self) -> None:
