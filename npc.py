@@ -4,6 +4,8 @@ from races.dwarf import Dwarf
 from races.human import Human
 from races.elf import Elf
 from races.halfling import Halfling
+from races.dragonborn import Dragonborn
+
 class Npc:
     ability_scores = AbilityScores()
     def __init__(self) -> None:
@@ -16,7 +18,8 @@ class Npc:
             Dwarf,
             Human,
             Elf,
-            Halfling
+            Halfling,
+            Dragonborn
         ]
         self.race = random.choice(available_races)
 
