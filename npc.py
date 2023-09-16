@@ -5,6 +5,7 @@ from races.human import Human
 from races.elf import Elf
 from races.halfling import Halfling
 from races.dragonborn import Dragonborn
+from races.gnome import Gnome
 
 class Npc:
     ability_scores = AbilityScores()
@@ -19,7 +20,8 @@ class Npc:
             Human,
             Elf,
             Halfling,
-            Dragonborn
+            Dragonborn,
+            Gnome
         ]
         self.race = random.choice(available_races)
 
