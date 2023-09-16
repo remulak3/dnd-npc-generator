@@ -18,6 +18,7 @@ class Npc:
         self.race = {}
         self.generate_race()
         self.apply_race_asi()
+        self.armor_class = 10 + int(AbilityScores.calculate_ability_bonus(self.ability_scores.scores["dexterity"]))
 
     def generate_race(self):
         available_races = [Dwarf, Human, Elf, Halfling, Dragonborn, Gnome, HalfElf, HalfOrc, Tiefling]
@@ -29,7 +30,11 @@ class Npc:
 
     def print_npc_info(self) -> None:
         self.ability_scores.print_ability_scores_bonuses()
+        self.describe_npc_properties()
         self.race.describe_race()
+        
+    def describe_npc_properties(self) -> None:
+        print("Armor Class: ",self.armor_class)
 
     def apply_race_asi(self) -> None:
         for name, value in self.race.ability_score_improvement_by_2.items():
