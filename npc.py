@@ -23,6 +23,10 @@ class Npc:
         for name, value in self.ability_scores.scores.items():
             print(name,":",value)
     
+    def print_npc_info(self) -> None:
+        self.ability_scores.print_ability_scores_bonuses()
+        self.race.describe_race()
+
     def apply_race_asi(self) -> None:
         for name, value in self.race.ability_score_improvement_by_2.items():
             self.ability_scores.scores[name] = self.ability_scores.scores[name] + value
