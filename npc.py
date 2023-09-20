@@ -9,24 +9,22 @@ from races.gnome import Gnome
 from races.halfelf import HalfElf
 from races.halforc import HalfOrc
 from races.tiefling import Tiefling
-from classes.barbarian import Barbarian
+from classes.barbarian import create_barbarian
 
 
 class Npc:
     ability_scores = AbilityScores()
 
-    def __init__(self) -> None:
-        self.race = {}
+    def __init__(self, race={}, level=1) -> None:
+        if race == {}:
+            self.generate_race()
+        else:
+            self.race = race
         self.npc_class = {}
         self.hitpoints = 0
-        self.generate_race()
-        self.apply_race_asi()
-        self.armor_class = 10 + int(
-            AbilityScores.calculate_ability_bonus(
-                self.ability_scores.scores["dexterity"]
-            )
-        )
-        self.generate_class()
+        self.setup_race_asi()
+        self.armor_class = self.setup_armor_class()
+        self.generate_class(level)
         self.setup_hitpoints()
 
     def generate_race(self):
@@ -43,8 +41,8 @@ class Npc:
         ]
         self.race = random.choice(available_races)
 
-    def generate_class(self):
-        available_classes = [Barbarian]
+    def generate_class(self, level):
+        available_classes = [create_barbarian(level)]
         self.npc_class = random.choice(available_classes)
 
     def setup_hitpoints(self):
@@ -54,21 +52,29 @@ class Npc:
             )
         )
 
+    def setup_armor_class(self):
+        ac = 10 + int(
+            AbilityScores.calculate_ability_bonus(
+                self.ability_scores.scores["dexterity"]
+            )
+        )
+        return ac
+
     def print_statblock(self) -> None:
         for name, value in self.ability_scores.scores.items():
             print(name, ":", value)
 
     def print_npc_info(self) -> None:
         self.ability_scores.print_ability_scores_bonuses()
-        self.describe_npc_properties()
+        self.print_npc_properties()
         self.race.describe_race()
         self.npc_class.describe_class()
 
-    def describe_npc_properties(self) -> None:
+    def print_npc_properties(self) -> None:
         print("Armor Class: ", self.armor_class)
         print("Hitpoints: ", self.hitpoints)
 
-    def apply_race_asi(self) -> None:
+    def setup_race_asi(self) -> None:
         for name, value in self.race.ability_score_improvement_by_2.items():
             self.ability_scores.scores[name] = self.ability_scores.scores[name] + value
         for name, value in self.race.ability_score_improvement_by_1.items():

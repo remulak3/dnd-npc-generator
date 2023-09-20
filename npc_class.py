@@ -2,10 +2,10 @@ import random
 
 
 class NpcClass:
-    def __init__(self) -> None:
+    def __init__(self, level=1) -> None:
         self.name = ""
         self.hit_dice = 0
-        self.level = 1
+        self.level = level if level > 1 else 1
         self.starting_hit_points = 0
         self.armor_proficiencies = []
         self.weapon_proficiencies = []
