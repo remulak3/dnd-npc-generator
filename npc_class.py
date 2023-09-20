@@ -14,6 +14,7 @@ class NpcClass:
         self.skill_proficiencies = []
         self.starting_equipment = []
         self.class_abilities = {}
+        self.subclass = ""
 
     def describe_class(self):
         print("Class: ", self.name)
