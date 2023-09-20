@@ -10,6 +10,7 @@ from races.halfelf import HalfElf
 from races.halforc import HalfOrc
 from races.tiefling import Tiefling
 from classes.barbarian import create_barbarian
+from classes.bard import create_bard
 
 
 class Npc:
@@ -42,7 +43,7 @@ class Npc:
         self.race = random.choice(available_races)
 
     def generate_class(self, level):
-        available_classes = [create_barbarian(level)]
+        available_classes = [create_barbarian(level), create_bard(level)]
         self.npc_class = random.choice(available_classes)
 
     def setup_hitpoints(self):
