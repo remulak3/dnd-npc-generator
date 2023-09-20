@@ -1,5 +1,11 @@
 from npc_class import NpcClass
 import random
+from enum import Enum, auto
+
+
+class path(Enum):
+    PathOfTheBerserker = auto()
+    PathOfTheTotemWarrior = auto()
 
 
 def create_barbarian(level=1) -> NpcClass:
@@ -78,9 +84,9 @@ def create_barbarian(level=1) -> NpcClass:
         ] = """
         Starting at 2nd level, you can throw aside all concern for defense to
         attack with fierce desperation. When you make your first attack on your
-        turn, you can decide to attack recklessly. Doing so gives you advantage on
-        melee weapon attack rolls using Strength during this turn, but attack
-        rolls against you have advantage until your next turn.
+        turn, you can decide to attack recklessly. Doing so gives you 
+        advantage on melee weapon attack rolls using Strength during this turn,
+        but attack rolls against you have advantage until your next turn.
         """
         Barbarian.class_abilities[
             "Danger Sense"
@@ -93,4 +99,56 @@ def create_barbarian(level=1) -> NpcClass:
         deafened, or incapacitated.
         """
 
+    if Barbarian.level >= 3:
+        Barbarian.subclass = random.choice(list(path))
+
+        if Barbarian.subclass == path.PathOfTheBerserker:
+            Barbarian.class_abilities[
+                "Frenzy"
+            ] = """
+            Starting when you choose this path at 3rd level, you can go into a
+            frenzy when you rage. If you do so, for the duration of your rage
+            you can make a single melee weapon attack as a bonus action on
+            each of your turns after this one. When your rage ends, you suffer
+            one level of exhaustion.
+            """
+        if Barbarian.subclass == path.PathOfTheTotemWarrior:
+            Barbarian.class_abilities[
+                "Spirit Seeker"
+            ] = """
+            Yours is a path that seeks attunement with the natural world,
+            giving you a kinship with beasts. At 3rd level when you adopt this
+            path, you gain the ability to cast the beast sense and speak with
+            animals spells, but only as rituals.
+            """
+            Barbarian.class_abilities[
+                "Totem Spirit"
+            ] = """
+            At 3rd level, when you adopt this path, you choose a totem spirit
+            and gain its feature. You must make or acquire a physical totem
+            object — an amulet or similar adornment — that incorporates fur or
+            feathers, claws, teeth, or bones of the totem animal. At your
+            option, you also gain minor physical attributes that are
+            reminiscent of your totem spirit. For example, if you have a bear
+            totem spirit, you might be unusually hairy and thick-skinned, or
+            if your totem is the eagle, your eyes turn bright yellow.
+
+            Your totem animal might be an animal related to those listed here
+            but more appropriate to your homeland. For example, you could
+            choose a hawk or vulture in place of an eagle.
+
+            - Bear. While raging, you have resistance to all damage except
+            psychic damage. The spirit of the bear makes you tough enough to
+            stand up to any punishment.
+
+            - Eagle. While you’re raging, other creatures have disadvantage on
+            opportunity attack rolls against you, and you can use the Dash
+            action as a bonus action on your turn. The spirit of the eagle
+            makes you into a predator who can weave through the fray with ease.
+
+            - Wolf. While you’re raging, your friends have advantage on melee
+            attack rolls against any creature within 5 feet of you that is
+            hostile to you. The spirit of the wolf makes you a leader of
+            hunters.
+            """
     return Barbarian
