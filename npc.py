@@ -46,11 +46,19 @@ class Npc:
         self.npc_class = random.choice(available_classes)
 
     def setup_hitpoints(self):
-        self.hitpoints = self.npc_class.starting_hit_points + int(
+        con_modifier = int(
             AbilityScores.calculate_ability_bonus(
                 self.ability_scores.scores["constitution"]
             )
         )
+        self.hitpoints = self.npc_class.starting_hit_points + con_modifier
+
+        if self.npc_class.level > 1:
+            self.hitpoints = (
+                self.hitpoints
+                + random.randint(1, self.npc_class.hit_dice)
+                + con_modifier
+            )
 
     def setup_armor_class(self):
         ac = 10 + int(
