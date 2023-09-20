@@ -161,3 +161,7 @@ cython_debug/
 .vscode/settings.json
 .scannerwork/.sonar_lock
 .scannerwork/report-task.txt
+.vscode/launch.json
+
+# MacOs
+**/.DS_Store
